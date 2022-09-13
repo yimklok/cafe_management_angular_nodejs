@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//responsibe table
+@media(max-width: 800px) {
+  .responsive_table {
+    overflow-x: auto !important;
+  }
+  .mat-table {
+    min-width:800px;
+  }
+}
+*::-webkit-scrollbar{
+  width: .6rem;
+}
+
+*::-webkit-scrollbar-thumb{
+  background-color: #fb3a3a;
+  border-radius: .3rem;
+}
+
+*::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+
+
+.mat-row {
+  height: auto;
+}
+
+.mat-header-cell,.mat-cell {
+  text-align: center !important;
+  padding: 0px 8px 0px 15px !important;
+}
+
+.black-snackbar {
+  background: black !important;
+  color: white !important;
+}
+
+.green-snackbar {
+  background: #32CD32 !important;
+  color: white !important;
+}
+
+.mat-snack-bar-container {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  width: 40vw !important;
+  min-width: 80% !important;
+  max-width: 40rem !important;
+  margin-top: 70px !important;
+  padding: 20px !important;
+  z-index: 10000 !important;
+}
