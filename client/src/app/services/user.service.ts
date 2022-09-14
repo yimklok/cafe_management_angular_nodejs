@@ -30,4 +30,17 @@ export class UserService {
       headers: new HttpHeaders().set('Content-Type','application/json')
     })
   }
+
+
+
+
+  getUser(){
+    return this.http.get(this.url+'/user/get/');
+  }
+
+  update(data:any){
+    return this.http.patch(this.url+'/user/update',data,{
+      headers:new HttpHeaders().set('Content-Type','application/json')
+    })
+  }
 }
