@@ -27,7 +27,7 @@ export class ManageOrderComponent implements OnInit {
   categorys: any = [];
   products: any = [];
   price: any;
-  totalAmont: number = 0;
+  totalAmount: number = 0;
   responseMessage: any;
 
   constructor(
@@ -42,21 +42,9 @@ export class ManageOrderComponent implements OnInit {
   ngOnInit(): void {
     this.ngxService.start();
     this.manageOrderForm = this.formBuilder.group({
-      name: [
-        null,
-        [Validators.required, Validators.pattern(GlobalConstants.nameRegex)],
-      ],
-      email: [
-        null,
-        [Validators.required, Validators.pattern(GlobalConstants.emailRegex)],
-      ],
-      contactNumber: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern(GlobalConstants.contactNumberRegex),
-        ],
-      ],
+      name:[null,[Validators.required]],
+      email:[null,[Validators.required]],
+      contactNumber:[null,[Validators.required]],
       paymentMethod: [null, [Validators.required]],
       product: [null, [Validators.required]],
       category: [null, [Validators.required]],
@@ -153,7 +141,7 @@ export class ManageOrderComponent implements OnInit {
 
   varlidateProductAdd() {
     if (
-      this.manageOrderForm.controls['totel'].value === 0 ||
+      this.manageOrderForm.controls['total'].value === 0 ||
       this.manageOrderForm.controls['total'].value === null ||
       this.manageOrderForm.controls['quantity'].value < 0
     ) {
@@ -163,7 +151,7 @@ export class ManageOrderComponent implements OnInit {
 
   validateSubmit() {
     if (
-      this.totalAmont === 0 ||
+      this.totalAmount === 0 ||
       this.manageOrderForm.controls['name'].value === null ||
       this.manageOrderForm.controls['email'].value === null ||
       this.manageOrderForm.controls['contactNumber'].value === null ||
@@ -177,11 +165,11 @@ export class ManageOrderComponent implements OnInit {
 
   add() {
     var formData = this.manageOrderForm.value;
-    var productName = this.dataSource.fide(
+    var productName = this.dataSource.find(
       (e: { id: Number }) => e.id == formData.product.id
     );
     if (productName === undefined) {
-      this.totalAmont = this.totalAmont + formData.total;
+      this.totalAmount = this.totalAmount + formData.total;
       this.dataSource.push({
         id: formData.product.id,
         name: formData.product.name,
@@ -201,7 +189,7 @@ export class ManageOrderComponent implements OnInit {
   }
 
   handleDeleteAction(value:any,element:any){
-    this.totalAmont = this.totalAmont - element.total;
+    this.totalAmount = this.totalAmount - element.total;
     this.dataSource.splice(value)
     this.dataSource = [...this.dataSource];
   }
@@ -214,14 +202,14 @@ export class ManageOrderComponent implements OnInit {
       email:formData.email,
       contactNumber:formData.contactNumber,
       paymentMethod:formData.paymentMethod,
-      totalAmont:this.totalAmont,
+      totalAmount:this.totalAmount,
       productDetails: JSON.stringify(this.dataSource)
     }
     this.billService.generateReport(data).subscribe((response:any)=>{
       this.downloadFile(response?.uuid)
       this.manageOrderForm.reset();
       this.dataSource = [];
-      this.totalAmont = 0;
+      this.totalAmount = 0;
     },(error:any)=>{
       this.ngxService.stop();
       if (error.error?.message) {

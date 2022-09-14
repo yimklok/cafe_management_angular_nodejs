@@ -1,60 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        table{
+        .main{
+            padding: 1rem 2rem;
+        }
+        table {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
-        td,th{
+
+        td,
+        th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
         }
-        .text-center{
+
+        .text-center {
             text-align: center;
         }
     </style>
 </head>
+
 <body>
-    <h3 class="text-center">Cafe Management System</h3>
-    <table>
-        <tr>
-            <th>Name: <%= name %></th>
-            <th>Email: <%= email %></th>
-        </tr>
-        <tr>
-            <th>Contact Number: <%= contactNumber %></th>
-            <th>Payment Method: <%= paymentMethod %></th>
-        </tr>
-    </table>
-    <h3 class="">Product Details</h3>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Sub Total</th>
-        </tr>
-        <% if(productDetails.length > 0) { %>
+    <div class="main">
+        <h3 class="text-center">Cafe Management System</h3>
+        <table>
+            <tr>
+                <th>Name: <%= name %></th>
+                <th>Email: <%= email %></th>
+            </tr>
+            <tr>
+                <th>Contact Number: <%= contactNumber %></th>
+                <th>Payment Method: <%= paymentMethod %></th>
+            </tr>
+        </table>
+        <h3 class="">Product Details</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Sub Total</th>
+            </tr>
+            <% if(productDetails.length > 0) { %>
             <% productDetails.forEach(product=>{ %>
-                <tr>
-                    <td><%= product.name %></td>
-                    <td><%= product.category %></td>
-                    <td><%= product.quantity %></td>
-                    <td><%= product.price %></td>
-                    <td><%= product.total %></td>
-                </tr>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.category %></td>
+                <td><%= product.quantity %></td>
+                <td><%= product.price %></td>
+                <td><%= product.total %></td>
+            </tr>
             <% }) %>
-        <% } %>
-    </table>
-    <h3 class="">Total: <%= totalAmount %></h3>
-    <h3 class="">Thank you for visiting. Please visit again!!</h3>
+            <% } %>
+        </table>
+        <h3 class="">Total: <%= totalAmount %></h3>
+        <h3 class="">Thank you for visiting. Please visit again!!</h3>
+    </div>
 </body>
+
 </html>
