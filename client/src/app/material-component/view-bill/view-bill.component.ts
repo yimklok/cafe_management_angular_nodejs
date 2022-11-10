@@ -92,6 +92,7 @@ export class ViewBillComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
     dialogRef.componentInstance.onEmitStatusChange.subscribe((respone:any)=>{
       this.ngxService.start();
+      dialogRef.close();
       this.deleteProduct(values.id)
     })
   }
